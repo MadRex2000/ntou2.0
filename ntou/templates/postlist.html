@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="row">
+  <div class="col"></div>
+  <div class="col-8">
+    {% if post %}
+      {% for postList in post reversed %}
+        {% if postList.check %}
+          <h2>#靠北海大2.0 {{ postList.id}}</h2>
+          <p>{{ postList.nickname }}</p>
+          <p>{{ postList.content }}</p>
+          {% if postList.photo %}
+            <img src="{{ postList.photo.url }}" alt="圖片消失惹ＱＱ" width='200'>
+          {% endif %}
+          <p>{{ postList.postTime }}</p>
+          <br>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  </div>
+  <div class="col"></div>
+</div>
+
+{% endblock %}

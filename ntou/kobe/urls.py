@@ -9,4 +9,5 @@ urlpatterns = [
     path('coc/', views.coc, name = 'coc'),
     path('about/', views.about, name = 'about'),
     path('post/', views.postSystem, name = 'post'),
+    path('postlist/', views.postlist, name = 'postlist'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -5,7 +5,7 @@ class KobePost(models.Model):
     id = models.AutoField(primary_key=True)
     nickname = models.CharField(blank = True, max_length = 100, verbose_name = '暱稱（選填）')
     content = models.TextField(verbose_name = '發文內容')
-    photo = models.ImageField(blank=True, upload_to = 'photos/' , verbose_name = '上傳照片')
+    photo = models.ImageField(blank=True, upload_to = 'photos/' , verbose_name = '上傳照片（選填）')
     check = models.BooleanField(default = False)
     postTime = models.DateTimeField(auto_now_add = True)
 
