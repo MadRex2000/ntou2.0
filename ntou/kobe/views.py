@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import postForm
 from .models import KobePost
+from .autoCheck import checkPost
 from django.contrib import messages
 
 def home(request):
@@ -9,13 +10,23 @@ def home(request):
 def coc(request):
     return render(request, 'coc.html', {})
 
+def about(request):
+    return render(request, 'about.html', {})
+
 def postSystem(request):
 
     if request.method == "POST":
         form = postForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('/')
+            post = form.save(commit=False)
+            if checkPost.check(post.content) == True:
+                print('True')
+                post.check = 'True'
+                post.save()
+                return redirect('/')
+            else:
+                post.save()
+                return redirect('/')
     else:
         form = postForm()
 

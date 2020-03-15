@@ -6,7 +6,8 @@ class postForm(forms.ModelForm):
     class Meta:
         model = KobePost
         fields = '__all__'
-
+        exclude = {'check'}
+        
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['nickname'].widget.attrs.update({'class': 'form-control form-control-lg'})
