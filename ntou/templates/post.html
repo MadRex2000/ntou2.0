@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col"></div>
+  <div class="col-8">
+
+    <form method='POST' enctype="multipart/form-data" action="">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" onclick="disp_confirm()" value="確認" />
+    </form>
+
+  </div>
+  <div class="col"></div>
+</div>
+
+<script type="text/javascript">
+function disp_confirm(){
+  window.alert("確認發文")
+  }
+
+</script>
+
+{% endblock %}
