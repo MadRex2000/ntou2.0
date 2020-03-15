@@ -20,13 +20,13 @@ Create your virtual environment:
 And enable it:
 
     . venv/bin/activate
-    
+
 ### Install Dependencies
 
 Use pip to install Python depedencies:
 
-    pip install -r requirements.txt
-    
+    pip3 install -r requirements.txt
+
 ### Get Ready for Development
 
 `cd` into the `ntou` directory:
@@ -35,11 +35,10 @@ Use pip to install Python depedencies:
 
 And migrate the database:
 
-    python manage.py migrate
+    python3 manage.py migrate
 
 Now you’re all set!
 
 ## Run the Development Server
 
-    python manage.py runserver
-
+    python3 manage.py runserver
