@@ -1,0 +1,10 @@
+asgiref==3.2.5
+Django==3.0.4
+get==2019.4.13
+Pillow==7.0.0
+post==2019.4.13
+public==2019.4.13
+pytz==2019.3
+query-string==2019.4.13
+request==2019.4.13
+sqlparse==0.3.1
