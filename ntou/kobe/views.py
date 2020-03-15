@@ -20,7 +20,6 @@ def postSystem(request):
         if form.is_valid():
             post = form.save(commit=False)
             if checkPost.check(post.content) == True:
-                print('True')
                 post.check = 'True'
                 post.save()
                 return redirect('/')
