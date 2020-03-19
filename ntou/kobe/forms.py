@@ -1,5 +1,5 @@
 from django import forms
-from .models import KobePost
+from .models import KobePost, registrationReviewer
 
 class postForm(forms.ModelForm):
 
@@ -12,3 +12,19 @@ class postForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['nickname'].widget.attrs.update({'class': 'form-control form-control-lg'})
         self.fields['content'].widget.attrs.update({'class': 'form-control form-control-lg'})
+
+class registerForm(forms.ModelForm):
+
+    class Meta:
+        model = registrationReviewer
+        fields = '__all__'
+        exclude = {'registerIpAddress',}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['name'].widget.attrs.update({'class': 'form-control form-control-lg'})
+        self.fields['reviewerNickName'].widget.attrs.update({'class': 'form-control form-control-lg'})
+        self.fields['mail'].widget.attrs.update({'class': 'form-control form-control-lg'})
+        self.fields['telegramId'].widget.attrs.update({'class': 'form-control form-control-lg'})
+        self.fields['department'].widget.attrs.update({'class': 'form-control form-control-lg'})
+        self.fields['grade'].widget.attrs.update({'class': 'form-control form-control-lg'})

@@ -16,3 +16,17 @@ class KobePost(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+
+class registrationReviewer(models.Model):
+    name = models.CharField(blank = True, max_length = 100, verbose_name = '姓名')
+    reviewerNickName = models.CharField(blank = True, max_length = 100, verbose_name = '暱稱')
+    mail = models.CharField(blank = True, max_length = 100, verbose_name = '電子信箱')
+    telegramId = models.CharField(blank = True, max_length = 100, verbose_name = 'Telegram ID')
+    department = models.CharField(blank = True, max_length = 100, verbose_name = '系所')
+    grade = models.CharField(blank = True, max_length = 100, verbose_name = '年級')
+    agreeCoc = models.BooleanField(verbose_name = '是否已閱讀並且同意與遵守行為準則', default = False)
+    registerIpAddress = models.CharField(max_length = 100, default = 0)
+
+    def __str__(self):
+        return self.name
