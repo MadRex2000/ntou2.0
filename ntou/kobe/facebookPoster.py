@@ -1,5 +1,5 @@
 import facebook
-graph = facebook.GraphAPI(access_token='EAAK9493PHmgBAEky4Hc4ZBr5ghCcYljA47m0fZBoZAYrrAsgzxNHJbZA6OWU6Htk5NJS99vpq9pEkFWHIqaI3EK5v8c4ZAWuASGTjJfcMzYiskZBEZCFO7QtOAznfk1JJeWqHfxMtWKlTGHku6lAhHFPlqjcDbJYxxa7ozE8kklTU17GZBmsDAmtBzw3KUCB3tZB8PgJLWhqUZCQZDZD', version="3.0")
+graph = facebook.GraphAPI(access_token='EAAK9493PHmgBAPMOFMcGZAvzHnuBOxsjvDtbtkPPBrx7scDvAXPLMRh6sS5o1Fl7ickjiBKL1Hqjua0AnigybFWv0r3RqP4ZAvsKl7wq6wt9mYF1eisZC936gqSzraJ3k2lD1JPwGCpoQUC5TeEOm3zhKZCs3SPr9VyRuyzd4UlPhK7DVZCTR', version="3.0")
 
 
 class FbPoster():
