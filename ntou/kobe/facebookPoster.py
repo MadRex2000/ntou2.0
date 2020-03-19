@@ -1,5 +1,5 @@
 import facebook
-graph = facebook.GraphAPI(access_token='EAAK9493PHmgBAEky4Hc4ZBr5ghCcYljA47m0fZBoZAYrrAsgzxNHJbZA6OWU6Htk5NJS99vpq9pEkFWHIqaI3EK5v8c4ZAWuASGTjJfcMzYiskZBEZCFO7QtOAznfk1JJeWqHfxMtWKlTGHku6lAhHFPlqjcDbJYxxa7ozE8kklTU17GZBmsDAmtBzw3KUCB3tZB8PgJLWhqUZCQZDZD', version="3.0")
+graph = facebook.GraphAPI(access_token='token', version="3.0")
 
 
 class FbPoster():
