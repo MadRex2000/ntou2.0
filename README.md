@@ -1,4 +1,4 @@
-# ntou2.0
+# Kobe NTOU2.0
 
 This repository serves the website of kobe NTOU. This project is open source and the license can be found in LICENSE.
 
