@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import postForm
-from .models import KobePost
+from .forms import postForm, registerForm
+from .models import KobePost, registrationReviewer
 from .autoCheck import checkPost
 from .facebookPoster import FbPoster
 from .postDeleteTokenCreater import createToken
@@ -18,6 +18,22 @@ def about(request):
 def postlist(request):
     post = KobePost.objects.all()
     return render(request, 'postlist.html', {'post': post})
+
+def registration(request):
+    if request.method == "POST":
+        form = registerForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.ipAddress = str(getIp(request))
+            post.save()
+            if post.cocPolicy: # check coc policy
+                post.save()
+                return redirect('/')
+            else:
+                messages.warning(request, '請先閱讀並同意行為準則')
+    else:
+        form = registerForm()
+    return render(request, 'registration.html', {'form': form})
 
 def postSystem(request):
     if request.method == "POST":
