@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col"></div>
+  <div class="col-8">
+    {% include 'regicontent.html' %}
+    <form method='POST' enctype="multipart/form-data" action="">
+      {% if messages %}
+      <ul class="alert alert-danger">
+          {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+      </ul>
+      {% endif %}
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" onclick="disp_confirm()" value="確認提交" />
+    </form>
+
+  </div>
+  <div class="col"></div>
+</div>
+
+<script type="text/javascript">
+function disp_confirm(){
+  window.alert("確認發文")
+  }
+
+</script>
+
+{% endblock %}
