@@ -24,9 +24,8 @@ def registration(request):
         form = registerForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
-            post.ipAddress = str(getIp(request))
-            post.save()
-            if post.cocPolicy: # check coc policy
+            post.registerIpAddress = str(getIp(request))
+            if post.agreeCoc: # check coc policy
                 post.save()
                 return redirect('/')
             else:
