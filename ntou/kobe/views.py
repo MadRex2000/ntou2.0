@@ -15,6 +15,9 @@ def coc(request):
 def about(request):
     return render(request, 'about.html', {})
 
+def contribution(request):
+    return render(request, 'contribution.html', {})
+
 def postlist(request):
     post = KobePost.objects.all()
     return render(request, 'postlist.html', {'post': post})
