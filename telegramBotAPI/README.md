@@ -71,11 +71,12 @@ And run the bot:
 
 ### Server Operations
 
-Since the bot is in development stage, it use `input()` function for simulating  the database's operations.
+Since the bot is in development stage, it use `input()` function for simulating the database's operations.
 
 #### input() Format
 
-+  post_text:
++ post_text:
+
 		post text post_id
 		Content...
 
@@ -85,8 +86,15 @@ Since the bot is in development stage, it use `input()` function for simulating 
 		Content...
 		photoAddress
 
++ vote_post:
+	
+	vote post_id Y/N
+	
+
 + accept_post:
+
 		accept post_id
 
 + reject_post:
+
 		reject post_id

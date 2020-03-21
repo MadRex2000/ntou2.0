@@ -7,7 +7,8 @@ from flask import Flask, request
 from telegram.ext import *
 
 from handlers import addme_handler, callback_handler
-from postManager import newPost, cleanPost
+from postManager import newPost, cleanPost, editPost
+
 import globals
 
 
@@ -53,11 +54,18 @@ def readPosts():
 		if s[0] == 'post': newPost(s, bot)
 		# Reply post format: accept/reject post_id
 		elif s[0] == 'accept':
-			if s[1] in globals.unreviewedPosts:
-				cleanPost(0, int(s[1]), True, globals.unreviewedPosts[s[1]][1], bot)
+			if s[1] in globals.posts:
+				cleanPost(s[1], True, bot)
 		elif s[0] == 'reject':
-			if s[1] in globals.unreviewedPosts:
-				cleanPost(0, int(s[1]), False, globals.unreviewedPosts[s[1]][1], bot)
+			if s[1] in globals.posts:
+				cleanPost(s[1], False, bot)
+		elif s[0] == 'vote':
+			if s[1] in globals.posts:
+				if s[2] == 'Y':
+					editPost(s[1], True, bot)
+				elif s[2] == 'N':
+					editPost(s[1], False, bot)
+		
 readPostsThread = threading.Thread(target=readPosts)
 
 if __name__ == "__main__":
