@@ -1,7 +1,7 @@
 import globals, telegram
 from postManager import cleanPost, editPost
 
-def addme_handler(self, update):
+def addme_handler(bot, update):
 	ID = update.message.from_user.id
 	if ID in globals.inspectors:
 		update.message.reply_text('You were inspector already.')
