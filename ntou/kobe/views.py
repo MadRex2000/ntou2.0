@@ -18,6 +18,9 @@ def about(request):
 def contribution(request):
     return render(request, 'contribution.html', {})
 
+def registrationSuccess(request):
+    return render(request, 'registrationSuccess.html', {})
+
 def postlist(request):
     post = KobePost.objects.all()
     return render(request, 'postlist.html', {'post': post})
@@ -30,7 +33,7 @@ def registration(request):
             post.registerIpAddress = str(getIp(request))
             if post.agreeCoc: # check coc policy
                 post.save()
-                return redirect('/')
+                return redirect('/registrationSuccess/')
             else:
                 messages.warning(request, '請先閱讀並同意行為準則')
     else:

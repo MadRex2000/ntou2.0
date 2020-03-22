@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col"></div>
+  <div class="col-8">
+    <h2>審稿者註冊成功</h2>
+    <p>靠北海大2.0 製作團隊 感謝您的註冊與協助。</p>
+    <p>請留意您的電子信箱，您將會收到一封由製作團隊所寄送的確認信。</p>
+    <p>信件內將會教您如何開始當一個稱職的審稿者。</p>
+  </div>
+  <div class="col"></div>
+</div>
+<br>
+<div class="row">
+  <div class="col"></div>
+  <div class="col-8">
+    <a href="{% url 'home' %}"><button type="button" class="btn btn-outline-success btn-lg">點我回首頁</button></a>
+  </div>
+  <div class="col"></div>
+</div>
+{% endblock %}

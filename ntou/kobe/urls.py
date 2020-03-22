@@ -12,4 +12,5 @@ urlpatterns = [
     path('postlist/', views.postlist, name = 'postlist'),
     path('registration/', views.registration, name = 'registration'),
     path('contribution/', views.contribution, name = 'contribution'),
+    path('registrationSuccess/', views.registrationSuccess, name = 'registrationSuccess'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
