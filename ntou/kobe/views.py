@@ -51,8 +51,8 @@ def postSystem(request):
                 if checkPost.check(post.content) == True: #auto check post
                     post.check = 'True'
                     post.save()
-                    #post.postId = FbPoster.poster(post, post.content) #post to facebook
-                    #post.checkPosted = 'True'
+                    post.postId = FbPoster.poster(post, post.content) #post to facebook
+                    post.checkPosted = 'True'
                     post.save()
                     return redirect('/')
                 else:
