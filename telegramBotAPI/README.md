@@ -75,4 +75,4 @@ And run the bot:
 + Format:
   - PostNewText: { 'method':'post', 'type':'text', 'id':'POST_ID', 'text':'CONTENT'}
   - PostNewPhoto: { 'method':'post', 'type':'photo', 'id':'POST_ID', 'text':'CONTENT', 'address':'PHOTO'S_ADDRESS'}
-  - Vote, Accept or Reject Post: { 'method':'vote/accept/reject', 'id':'POST_ID', 'result':'True/False'}
+  - Vote, Accept or Reject Post: { 'method':'vote/clean', 'id':'POST_ID', 'result':'True/False'}

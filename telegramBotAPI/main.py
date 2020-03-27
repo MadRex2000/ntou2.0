@@ -54,7 +54,7 @@ def readPosts():
 				result = True if request.values['result'] == 'True' else False
 				if request.values['method'] == 'vote':
 					editPost(request.values['id'], result, bot)
-				else:
+				elif reuqest.values['method'] == 'clean':
 					cleanPost(request.values['id'], result, bot)
 	return 'ok'
 
