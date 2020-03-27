@@ -69,32 +69,10 @@ And run the bot:
 
 + /addme: Add the user who send this command to the inspectors list, you can add a verification function for this.
 
-### Server Operations
+### Database Operations
 
-Since the bot is in development stage, it use `input()` function for simulating the database's operations.
-
-#### input() Format
-
-+ post_text:
-
-		post text post_id
-		Content...
-
-+ post_photo:
-
-		post photo (post_id)
-		Content...
-		photoAddress
-
-+ vote_post:
-	
-	vote post_id Y/N
-	
-
-+ accept_post:
-
-		accept post_id
-
-+ reject_post:
-
-		reject post_id
++ Send the information to http://localhost:5000/operate, by JSON.
++ Format:
+  - PostNewText: { 'method':'post', 'type':'text', 'id':'POST_ID', 'text':'CONTENT'}
+  - PostNewPhoto: { 'method':'post', 'type':'photo', 'id':'POST_ID', 'text':'CONTENT', 'address':'PHOTO'S_ADDRESS'}
+  - Vote, Accept or Reject Post: { 'method':'vote/accept/reject', 'id':'POST_ID', 'result':'True/False'}
