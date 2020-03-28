@@ -1,17 +1,15 @@
 from globals import Posts
-import globals
-import telegram
+import globals, telegram
 
-def newPost(content, bot):
-	text = input()
-	thisPost = Posts(text, content[1], [0, 0])
-	text += '\n\nAccept: {}, Reject:{}'.format(0,0)
-	post_id = content[2]
+def newPost(request, bot):
+	thisPost = Posts(request.values['text'], request.values['type'], [0, 0])
+	text =  request.values['text'] + '\n\nAccept: {}, Reject:{}'.format(0,0)
+	post_id = request.values['id']
 	buttons = [[telegram.InlineKeyboardButton('Accept', callback_data = 'Y {}'.format(post_id)), telegram.InlineKeyboardButton('Reject', callback_data = 'N {}'.format(post_id))]]
 	reply_markup = telegram.InlineKeyboardMarkup(buttons)
 	owners = [] # Will add in the posts
 	if thisPost.post_method == 'photo':
-		address = input()
+		address = request.values['address']
 		address = 'testimg.jpg' # for debug
 		for i in globals.inspectors:
 			msg = bot.send_photo(chat_id = i, photo = open(address, 'rb'), caption = text, reply_markup = reply_markup)

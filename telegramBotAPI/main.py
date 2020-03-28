@@ -1,7 +1,6 @@
 #pipenv run python3 main.py
 import configparser
 import logging
-import threading
 import telegram
 from flask import Flask, request
 from telegram.ext import *
@@ -26,7 +25,7 @@ app = Flask(__name__)
 # Initial bot by Telegram access token
 bot = telegram.Bot(token=str(config['TELEGRAM']['ACCESS_TOKEN']))
 
-@app.route('/', methods=['POST'])
+@app.route('/hook', methods=['POST'])
 def webhook_handler():
 	"""Set route /hook with POST method will trigger this method."""
 	if request.method == "POST":
@@ -45,30 +44,20 @@ dispatcher = Dispatcher(bot, None)
 dispatcher.add_handler(CommandHandler('addme', addme_handler))
 dispatcher.add_handler(CallbackQueryHandler(callback_handler))
 
-# Simulating the database operation
+@app.route('/operate', methods=['POST'])
 def readPosts():
-	while True:
-		try:	s = input().split()
-		except:	continue
-		# New post format: post text/photo post_id
-		if s[0] == 'post': newPost(s, bot)
-		# Reply post format: accept/reject post_id
-		elif s[0] == 'accept':
-			if s[1] in globals.posts:
-				cleanPost(s[1], True, bot)
-		elif s[0] == 'reject':
-			if s[1] in globals.posts:
-				cleanPost(s[1], False, bot)
-		elif s[0] == 'vote':
-			if s[1] in globals.posts:
-				if s[2] == 'Y':
-					editPost(s[1], True, bot)
-				elif s[2] == 'N':
-					editPost(s[1], False, bot)
-		
-readPostsThread = threading.Thread(target=readPosts)
+	if request.method == 'POST':
+		if request.values['method'] == 'post':
+			newPost(request, bot)
+		else:
+			if request.values['id'] in globals.posts:
+				result = True if request.values['result'] == 'True' else False
+				if request.values['method'] == 'vote':
+					editPost(request.values['id'], result, bot)
+				elif request.values['method'] == 'clean':
+					cleanPost(request.values['id'], result, bot)
+	return 'ok'
 
 if __name__ == "__main__":
 	globals.initialize()
-	readPostsThread.start()
 	app.run()
