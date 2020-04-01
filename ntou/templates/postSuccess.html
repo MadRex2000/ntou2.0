@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col"></div>
+  <div class="col-8">
+    <h2>發文完成</h2>
+    <h3>覺得後悔嗎？ 想要人生重來嗎？</h3>
+    <h3>雖然沒有人生重來槍，但是你可以有發文重來 Token \^O^/ </h3>
+    <br>
+    {% if post %}
+      <pre><p>{{ post.token }}</p></pre>
+    {% endif %}
+    <br>
+    <p>如果真的非常不幸，你真的非常後悔、懊惱，想要把刪除文章。</p>
+    <p>你可以複製上面這組 Token 然後到後悔發文系統將文章刪除。</p>
+    <a href="{% url 'deletepost' %}"><button type="button" class="btn btn-outline-warning btn-lg">點我後悔，來去刪文</button></a>
+  </div>
+
+  <div class="col"></div>
+</div>
+
+{% endblock %}

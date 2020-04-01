@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import postForm, registerForm
+from .forms import postForm, registerForm, deleteForm
 from .models import KobePost, registrationReviewer
 from .autoCheck import checkPost
-from .facebookPoster import FbPoster
+from .facebookApi import FbManger
 from .postDeleteTokenCreater import createToken
 from django.contrib import messages
+import json
 
 def home(request):
     return render(request, 'home.html', {})
@@ -51,11 +52,11 @@ def postSystem(request):
                 if checkPost.check(post.content) == True: #auto check post
                     post.check = 'True'
                     post.save()
-                    poster = FbPoster(post, post.content) #post to facebook
+                    poster = FbManger(post, post.content, post.postTime) #post to facebook
                     post.postId = poster.poster()
                     post.checkPosted = 'True'
                     post.save()
-                    return redirect('/')
+                    return redirect('/postsuccess/' + str(post.id) + '/')
                 else:
                     post.save()
                     return redirect('/')
@@ -64,6 +65,27 @@ def postSystem(request):
     else:
         form = postForm()
     return render(request, 'post.html', {'form': form})
+
+def postDelete(post_token):
+    post = KobePost.objects.get(token = post_token) #get post by post token
+    print(post.postId[8:39])
+    poster = FbManger(post, post.content, post.postTime)
+    poster.postDeleter(post.postId[8:39]) #delete post
+
+def deletePostSystem(request):
+    if request.method == "POST":
+        form = deleteForm(request.POST)
+        if form.is_valid():
+            deleteToken = form.cleaned_data['deleteToken']
+            postDelete(deleteToken)
+            return redirect('/')
+    else:
+        form = deleteForm()
+    return render(request, 'deletepost.html', {'form': form})
+
+def postSuccess(request, id):
+    post = KobePost.objects.get(id = id)
+    return render(request, 'postSuccess.html', {'post': post})
 
 def getIp(request):
     xForwardedFor = request.META.get('HTTP_X_FORWARDED_FOR')
