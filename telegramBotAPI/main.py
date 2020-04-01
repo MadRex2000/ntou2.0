@@ -46,6 +46,7 @@ dispatcher.add_handler(CallbackQueryHandler(callback_handler))
 
 @app.route('/operate', methods=['POST'])
 def readPosts():
+	if request.remote_addr != '127.0.0.1': return 'ok'
 	if request.method == 'POST':
 		if request.values['method'] == 'post':
 			newPost(request, bot)
