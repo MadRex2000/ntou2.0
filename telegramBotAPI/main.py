@@ -44,9 +44,10 @@ dispatcher = Dispatcher(bot, None)
 dispatcher.add_handler(CommandHandler('addme', addme_handler))
 dispatcher.add_handler(CallbackQueryHandler(callback_handler))
 
+HOST_IP = config['HOST']['IP']
 @app.route('/operate', methods=['POST'])
 def readPosts():
-	if request.remote_addr != '127.0.0.1': return 'ok'
+	if request.remote_addr != HOST_IP: return 'ok'
 	if request.method == 'POST':
 		if request.values['method'] == 'post':
 			newPost(request, bot)
