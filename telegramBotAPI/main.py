@@ -9,7 +9,7 @@ from handlers import addme_handler, callback_handler
 from postManager import newPost, cleanPost, editPost
 
 import globals
-
+globals.initialize()
 
 # Load data from config.ini file
 config = configparser.ConfigParser()
@@ -59,5 +59,4 @@ def readPosts():
 	return 'ok'
 
 if __name__ == "__main__":
-	globals.initialize()
 	app.run()
