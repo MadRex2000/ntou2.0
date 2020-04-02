@@ -9,7 +9,7 @@ from handlers import addme_handler, callback_handler
 from postManager import newPost, cleanPost, editPost
 
 import globals
-
+globals.initialize()
 
 # Load data from config.ini file
 config = configparser.ConfigParser()
@@ -44,8 +44,10 @@ dispatcher = Dispatcher(bot, None)
 dispatcher.add_handler(CommandHandler('addme', addme_handler))
 dispatcher.add_handler(CallbackQueryHandler(callback_handler))
 
+HOST_IP = config['HOST']['IP']
 @app.route('/operate', methods=['POST'])
 def readPosts():
+	if request.remote_addr != HOST_IP: return 'ok'
 	if request.method == 'POST':
 		if request.values['method'] == 'post':
 			newPost(request, bot)
@@ -59,5 +61,4 @@ def readPosts():
 	return 'ok'
 
 if __name__ == "__main__":
-	globals.initialize()
 	app.run()
