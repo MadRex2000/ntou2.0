@@ -7,61 +7,56 @@ This program controls the telegramBot to send message to users for reviewing the
 ### Requirements
 
 - Python 3
-    + pipenv
     + python-telegram-bot
     + flask
-- ngrok
 
 ### Virtual Environment Building
 
 Create the virtual environment:
 
-	cd $menu
-	pipenv install --three python-telegram-bot flask gunicorn requests
-
-Now your project menu would add two files:
-
-	Project Directory
-	├── Pipfile.lock
-	└── Pipfile
+	$python3 -m venv venv
+	$source /venv/bin/activate
+	(venv) $pip install falsk
+	(venv) $pip install python-telegram-bot
 
 Create `config.ini` in the same menu:
 
-	vim config.ini
+	(venv) $vim config.ini
 
 Add your telegram bot access token in config file:
+Add your public ip address in config file:
 
 	[TELEGRAM]
 	ACCESS_TOKEN = YOUR_TOKEN
+	[HOST]
+	IP = YOUR_IPADDRESS
+
 
 Add `no.png` and `ok.png` for reply message.
+*Add `testimg.jpg` for image post test.*
 
-### Apply a domain for develpoment and test
+### Deployed your app
 
-Using `ngrok` apply for a temporary domain:
-
-	ngrok http 5000
-
-And copy the **https** url.
+We use nginx + uwsgi.
+*For the test, you can use `ngrok`, and copy the `https` link.*
 
 Going here to set webhook for your telegramBot:
-http://api.telegram.org/botYOUR_TOKEN_HERE/setWebhook?url=WEBHOOK_URL
+http://api.telegram.org/botYOUR_TOKEN_HERE/setWebhook?url=WEBHOOK_URL/**hook**
 
 ## Finally, run the bot server
 
-Confrim your menu like this:
+Confirm your menu like this:
 
 	Project Directory
 	├── config.ini
 	├── main.py
 	├── no.png
-	├── ok.png
-	├── Pipfile
-	└── Pipfile.lock
+	└── ok.png
 
 And run the bot:
 
-	pipenv run python3 main.py
+	(venv) $ python3 main.py
+
 
 ## How to use
 
