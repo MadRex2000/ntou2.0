@@ -2,6 +2,8 @@
 local.env
 /.env
 
+*.ini
+
 # Django stuff:
 *.pot
 *.log

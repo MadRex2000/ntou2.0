@@ -1,6 +1,9 @@
 from django import forms
 from .models import KobePost, registrationReviewer
 
+class deleteForm(forms.Form):
+    deleteToken = forms.CharField(label = 'Token')
+
 class postForm(forms.ModelForm):
 
     class Meta:
