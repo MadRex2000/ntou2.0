@@ -2,6 +2,11 @@ from django import forms
 from .models import KobePost, registrationReviewer
 
 class deleteForm(forms.Form):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['deleteToken'].widget.attrs.update({'class': 'form-control form-control-lg'})
+
     deleteToken = forms.CharField(label = 'Token')
 
 class postForm(forms.ModelForm):
