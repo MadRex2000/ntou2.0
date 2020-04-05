@@ -1,4 +1,4 @@
-import facebook, configparser
+import facebook, configparser, os
 
 config = configparser.ConfigParser()
 config.read('kobe/config.ini')
@@ -17,7 +17,14 @@ class FbManger():
             parent_object='100177881620069',
             connection_name="feed",
             message='#靠北海大二點零{}\n發文網址：https://www.kobentou.site\n{}\n發文時間：{}'.format(self.id, self.post, str(self.time)[:16]),
-            )
+            )['id']
+
+    def imgPoster(self, img):
+        return graph.put_photo(
+            parent_object='100177881620069',
+            image=open(os.path.join('media', str(img)), 'rb'),
+            message='#靠北海大二點零{}\n發文網址：https://www.kobentou.site\n{}\n發文時間：{}'.format(self.id, self.post, str(self.time)[:16]),
+            )['post_id']
 
     def postDeleter(self, token):
         return(graph.delete_object(id = token))

@@ -50,13 +50,22 @@ def postSystem(request):
             post.token = str(createToken.token())
             if post.cocPolicy: # check coc policy
                 if checkPost.check(post.content) == True: #auto check post
-                    post.check = 'True'
-                    post.save()
-                    poster = FbManger(post, post.content, post.postTime) #post to facebook
-                    post.postId = poster.poster()
-                    post.checkPosted = 'True'
-                    post.save()
-                    return redirect('/postsuccess/' + str(post.id) + '/')
+                    if post.photo:
+                        post.check = 'True'
+                        post.save()
+                        poster = FbManger(post, post.content, post.postTime) #post to facebook
+                        post.postId = poster.imgPoster(post.photo)
+                        post.checkPosted = 'True'
+                        post.save()
+                        return redirect('/postsuccess/' + str(post.id) + '/')
+                    else:
+                        post.check = 'True'
+                        post.save()
+                        poster = FbManger(post, post.content, post.postTime) #post to facebook
+                        post.postId = poster.poster()
+                        post.checkPosted = 'True'
+                        post.save()
+                        return redirect('/postsuccess/' + str(post.id) + '/')
                 else:
                     post.save()
                     return redirect('/')
@@ -68,9 +77,9 @@ def postSystem(request):
 
 def postDelete(post_token):
     post = KobePost.objects.get(token = post_token) #get post by post token
-    print(post.postId[8:39])
+    print(post.postId)
     poster = FbManger(post, post.content, post.postTime)
-    poster.postDeleter(post.postId[8:39]) #delete post
+    poster.postDeleter(post.postId) #delete post
 
 def deletePostSystem(request):
     if request.method == "POST":
