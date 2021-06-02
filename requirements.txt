@@ -17,4 +17,4 @@ request==2019.4.13
 requests==2.23.0
 shellescape==3.8.1
 sqlparse==0.3.1
-urllib3==1.25.8
+urllib3==1.26.5
